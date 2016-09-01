@@ -69,7 +69,7 @@ public class IndexController {
 		List<Product> list = productService.viewProduct();
 		ObjectMapper object = new ObjectMapper();
 		String jsonlist = object.writeValueAsString(list);
-		return new ModelAndView("userHome","listofproducts",jsonlist);
+		return new ModelAndView("test1","listofproducts",jsonlist);
 	}
 	@RequestMapping("/productDetails")
 	public ModelAndView productDetails(@RequestParam("id") String id){

@@ -40,6 +40,9 @@
 <!--custom css-->
 <link href=<c:url value="/resources/css/style.css"/> rel="stylesheet"
 	type="text/css" />
+	
+	<link href=<c:url value="/resources/css/product.css"/> rel="stylesheet"
+	type="text/css" />
 <!--shop-kart-js-->
 <script src=<c:url value="/resources/js/simpleCart.min.js"/>></script>
 </head>
@@ -57,8 +60,7 @@
 						<a href="checkout.html">
 							<h3>
 								<div class="total">
-									<span class="simpleCart_total"></span>(<span
-										id="simpleCart_quantity" class="simpleCart_quantity"></span>)
+									<span class="glyphicon glyphicon-shopping-cart">Cart</span>
 								</div>
 							</h3>
 						</a>
