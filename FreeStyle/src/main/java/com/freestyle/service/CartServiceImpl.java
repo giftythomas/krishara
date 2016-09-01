@@ -24,6 +24,12 @@ public class CartServiceImpl implements CartService {
 	}
 
 
+	public double totalAmount(int cart_id) {
+		double totalAmount=cartDAO.totalAmount(cart_id);
+		return totalAmount;
+	}
+
+
 	
 	
 }

@@ -8,5 +8,7 @@ public interface CartDAO {
 	
 	public void updateCart(Cart cart);
 	
+	public double totalAmount(int cart_id);
+	
 	public Cart validateCart(int cart_id);
 }

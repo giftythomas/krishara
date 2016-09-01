@@ -1,5 +1,7 @@
 package com.freestyle.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,12 @@ public class CartItemServiceImpl implements CartItemService {
 	public CartItems getCartItemByProductId(int product_id) {
 		return cartItemsDAO.getCartItemByProductId(product_id); 
 		
+	}
+
+
+	public List<CartItems> listCartItems(int cart_id) {
+		List<CartItems> list=cartItemsDAO.listCartItems(cart_id);
+		return list;
 	}
 
 	

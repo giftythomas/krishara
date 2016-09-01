@@ -1,5 +1,7 @@
 package com.freestyle.dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -47,6 +49,16 @@ public class CartItemsDAOImpl implements CartItemsDAO {
 		tx.commit();
 		return cartItems;
 		
+	}
+
+
+	@SuppressWarnings({ "unchecked", "unused" })
+	public List<CartItems> listCartItems(int cart_id) {
+		Session session=sessionFactory.getCurrentSession();
+		Transaction tx=session.beginTransaction();
+		Query query= session.createQuery("from CartItems where cart_id="+cart_id);
+		List<CartItems> list=(List<CartItems>)query.list();
+		return list;
 	}
 
 }

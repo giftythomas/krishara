@@ -1,7 +1,9 @@
 package com.freestyle.dao;
 
 import java.io.IOException;
+import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -44,6 +46,17 @@ public class CartDAOImpl implements CartDAO {
 		}
 		updateCart(cart);
 		return cart;
+	}
+
+	
+	public double totalAmount(int cart_id) {
+		Session session=sessionFactory.getCurrentSession();
+		Transaction tx=session.beginTransaction();
+		String hql= "select sum(total) from CartItems where cart_id='"+cart_id+"'";
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		List list=query.list();
+		double totalAmount=(double) list.get(0);
+		return totalAmount;
 	}
 
 }

@@ -7,5 +7,7 @@ public interface CartService {
 	public Cart getCartById(int cart_id);
 
 	public void updateCart(Cart cart);
+	
+	public double totalAmount(int cart_id);
 
 }
