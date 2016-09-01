@@ -53,8 +53,9 @@ public class UserDAOImpl implements UserDAO {
 		Transaction transaction=session.beginTransaction();
 		Query query= session.createQuery("from User where user_name=?");
 		query.setString(0, name);
+		User user=(User) query.uniqueResult();
 		transaction.commit();
-		return (User) query.uniqueResult();
+		return user;
 	}
 
 	public void deleteUser(int id) {
