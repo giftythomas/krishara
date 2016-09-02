@@ -1,5 +1,7 @@
 package com.freestyle.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,8 +12,9 @@ import javax.persistence.OneToOne;
 import org.springframework.stereotype.Component;
 @Entity
 @Component
-public class CartItems {
+public class CartItems implements Serializable{
 
+	private static final long serialVersionUID = -7081909909171296469L;
 	@Id@GeneratedValue
 	private int cartItem_id;
 	@ManyToOne

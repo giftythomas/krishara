@@ -1,5 +1,6 @@
 package com.freestyle.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,8 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 @Entity
-public class Cart {
+public class Cart implements Serializable{
 
+	private static final long serialVersionUID = -6141655067975573268L;
 	@Id@GeneratedValue
 	private int cart_id;
 	@OneToMany(mappedBy="cart", cascade=CascadeType.ALL, fetch=FetchType.EAGER)

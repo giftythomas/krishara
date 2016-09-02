@@ -22,6 +22,7 @@ public class User {
 	@GeneratedValue
 	private int user_id;
 	@NotEmpty(message = "Username should not be empty")
+	
 	private String user_name;
 	@NotEmpty(message = "Password should not be empty")
 	@Size(min=8, max=20,message="Password must have minimum eight characters")

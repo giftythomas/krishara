@@ -16,9 +16,6 @@
 	 addEventListener("load", function() {setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
 <meta charset utf="8">
-
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -28,7 +25,6 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
 <script src="https://use.fontawesome.com/bb7d595c3f.js"></script>
-
 <!--fonts-->
 <link href='//fonts.googleapis.com/css?family=Fredoka+One'
 	rel='stylesheet' type='text/css'>
@@ -63,20 +59,7 @@
 						<a class="btn btn-default log-bar" href="logout" role="button">Logout</a>
 						</c:when>
 						</c:choose>
-					<div class="cart box_1">
-						<a href="checkout.html">
-							<h3>
-								<div class="total">
-									<span class="simpleCart_total"></span>(<span
-										id="simpleCart_quantity" class="simpleCart_quantity"></span>)
-								</div>
-							</h3>
-						</a>
-						<p>
-							<a href="javascript:;" class="simpleCart_empty">Empty Cart</a>
-						</p>
-						<div class="clearfix"></div>
-					</div>
+					
 				</div>
 				<div class="clearfix"></div>
 			</div>

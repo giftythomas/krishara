@@ -57,7 +57,7 @@
 						<a class="btn btn-default log-bar" 
 						href="logout" role="button">Logout</a>
 					<div class="cart box_1">
-						<a href="checkout.html">
+						<a href="viewCart">
 							<h3>
 								<div class="total">
 									<span class="glyphicon glyphicon-shopping-cart">Cart</span>

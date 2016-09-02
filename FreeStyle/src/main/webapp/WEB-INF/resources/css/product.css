@@ -1,8 +1,9 @@
 .bg-1 {
-    background: #2d2d30;
+    background: #ffffff;
     color: #bdbdbd;
 }
-.bg-1 h3 {color: #fff;}
+
+.bg-1 h3 {color: #400080;}
 .bg-1 p {font-style: italic;}
 .thumbnail {
     padding: 0 0 15px 0;
