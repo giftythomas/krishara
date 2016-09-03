@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.stereotype.Component;
 @Entity
 @Component
@@ -19,6 +20,7 @@ public class CartItems implements Serializable{
 	private int cartItem_id;
 	@ManyToOne
 	@JoinColumn(name="cart_id")
+	@JsonIgnore
 	private Cart cart;
 	@OneToOne
 	@JoinColumn(name="product_id")

@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 @Entity
 public class Cart implements Serializable{
 
@@ -21,6 +23,7 @@ public class Cart implements Serializable{
 	private List<CartItems> cartItems;
 	@OneToOne
 	@JoinColumn(name="user_id")
+	@JsonIgnore
 	private User user;
 	
 	public List<CartItems> getCartItems() {

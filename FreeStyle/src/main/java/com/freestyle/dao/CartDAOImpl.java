@@ -54,7 +54,7 @@ public class CartDAOImpl implements CartDAO {
 		Transaction tx=session.beginTransaction();
 		String hql= "select sum(total) from CartItems where cart_id='"+cart_id+"'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		double totalAmount=query.getFirstResult();
+		double totalAmount=(double) query.list().get(0);
 		return totalAmount;
 	}
 

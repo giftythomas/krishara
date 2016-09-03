@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
@@ -35,6 +36,7 @@ public class User {
 	
 	@OneToOne
 	@JoinColumn(name="cart_id")
+	@JsonIgnore
 	private Cart cart;
 	
 	
