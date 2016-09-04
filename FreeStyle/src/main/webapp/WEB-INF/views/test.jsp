@@ -43,7 +43,7 @@
                        
                         <ul>
                             <li class="ad-2-crt simpleCart_shelfItem">
-                                <a class="btn item_add" href="userCart?id=${products.product_id}" role="button">Add To Cart</a>
+                                <a class="btn item_add" href="userCart?product_id=${products.product_id}" role="button">Add To Cart</a>
                                 <a class="btn" href="#" role="button">Buy Now</a>
                             </li>
                         </ul>

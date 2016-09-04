@@ -8,7 +8,9 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,11 +38,25 @@ public class CartController {
 	@Autowired
 	CartService cartService;
 	@RequestMapping("/userCart")
-	public String addToCart(@RequestParam("id") String id){
-		String activeUser=SecurityContextHolder.getContext().getAuthentication().getName();
-		User actUser=userService.getUserByName(activeUser);
-		Cart cart=actUser.getCart();
-		Product product=productService.getId(Integer.parseInt(id));
+	public String addToCart(@RequestParam(value="product_id") int product_id, @AuthenticationPrincipal org.springframework.security.core.userdetails.User activeUser){
+		User user=userService.getUserByName(activeUser.getUsername());
+		Cart cart=user.getCart();
+		Product product=productService.getId(product_id);
+		List<CartItems> list=cart.getCartItems();
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println("Inside for loop");
+			if(product.getProduct_id()==list.get(0).getProduct().getProduct_id()){
+				System.out.println("Inside if ");
+				CartItems cartItems=list.get(i);
+				cartItems.setQuantity(cartItems.getQuantity()+1);
+				System.out.println("Quantity updated");
+				cartItems.setTotal(product.getProduct_price()*cartItems.getQuantity());
+				cartItemService.addCartItem(cartItems);
+				System.out.println("Product added");
+				return "redirect:/User";
+			}
+		}
+		
 		cartItems.setCart(cart);
 		cartItems.setProduct(product);
 		cartItems.setQuantity(1);

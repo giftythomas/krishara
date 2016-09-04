@@ -16,6 +16,8 @@
 	 addEventListener("load", function() {setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
 <meta charset utf="8">
+<link rel="stylesheet" href="/resources/css/stylesheet.css">
+	<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,200italic,200,300,300italic,400italic,600,600italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

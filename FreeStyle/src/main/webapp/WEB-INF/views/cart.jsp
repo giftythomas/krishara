@@ -36,11 +36,11 @@ angular.module('myApp',[]).controller('productCtrl',function($scope)
                     </div>
                     <div class="col-md-9 cart-items">
                         <h1>My Shopping Bag </h1>
-                        <div class="cart-header">
-                <div class="close1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+                        <div class="cart-header" ng-repeat="roll in names">
+                <div class="close1"><a href="deleteCartItem?id={{roll.product_id }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
                             <div class="cart-sec simpleCart_shelfItem">
-                                    <div class="cart-item cyc" ng-repeat="roll in names">
-                                        <img src="resources/images/{{roll.product_id}}.jpg" class="img-responsive" alt="img"/>
+                                    <div class="cart-item cyc">
+                                        <img src="resources/images/${roll.product_id}.jpg" class="img-responsive" alt="img"/>
                                     </div>
                                    <div class="cart-item-info">
                                         <ul class="qty">
