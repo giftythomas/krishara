@@ -13,13 +13,21 @@
 <meta name="keywords"
 	content="N-Air Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
+	
 	 addEventListener("load", function() {setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 </script>
 <meta charset utf="8">
-<link rel="stylesheet"
+<link
+	href='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'
+	rel='stylesheet' type='text/css'>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js'>
+	<link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+</script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script
@@ -37,7 +45,8 @@
 	type="text/css" />
 <!--shop-kart-js-->
 <script src=<c:url value="/resources/js/simpleCart.min.js"/>></script>
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
 
 </head>
@@ -49,17 +58,17 @@
 					<a href="index">N-AIR</a>
 				</div>
 				<div class="login-bars">
-				<c:choose>
+					<c:choose>
 						<c:when test="${empty loggedInUser}">
-					<a class="btn btn-default log-bar" href="register"
-						role="button">Sign up</a> <a class="btn btn-default log-bar"
-						href="User" role="button">Login</a>
+							<a class="btn btn-default log-bar" href="register" role="button">Sign
+								up</a>
+							<a class="btn btn-default log-bar" href="User" role="button">Login</a>
 						</c:when>
 						<c:when test="${not empty loggedInUser}">
-						<a class="btn btn-default log-bar" href="logout" role="button">Logout</a>
+							<a class="btn btn-default log-bar" href="logout" role="button">Logout</a>
 						</c:when>
-						</c:choose>
-					
+					</c:choose>
+
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -95,11 +104,13 @@
 												</ul>
 											</div>
 											<div class="col-sm-4 menu-img-pad">
-												<a href="#"><img src=<c:url value="resources/images/menu1.jpg"/> alt="/"
+												<a href="#"><img
+													src=<c:url value="resources/images/menu1.jpg"/> alt="/"
 													class="img-rsponsive men-img-wid" /></a>
 											</div>
 											<div class="col-sm-4 menu-img-pad">
-												<a href="#"><img src=<c:url value="resources/images/menu2.jpg"/> alt="/"
+												<a href="#"><img
+													src=<c:url value="resources/images/menu2.jpg"/> alt="/"
 													class="img-rsponsive men-img-wid" /></a>
 											</div>
 										</div>
@@ -120,7 +131,8 @@
 												</ul>
 											</div>
 											<div class="col-sm-6">
-												<a href="#"><img src=<c:url value="resources/images/menu3.jpg"/> alt="/"
+												<a href="#"><img
+													src=<c:url value="resources/images/menu3.jpg"/> alt="/"
 													class="img-responsive men-img-wid" /></a>
 											</div>
 										</div>

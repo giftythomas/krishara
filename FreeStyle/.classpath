@@ -29,6 +29,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/DT Project/Softwares/apache-tomcat-8.0.36/lib/Java7RefreshProvider_0.0.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
