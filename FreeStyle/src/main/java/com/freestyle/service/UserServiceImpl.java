@@ -13,9 +13,9 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	UserDAO userDAO;
-	public void addUser(User user) {
+	public String addUser(User user) {
 		System.out.println("User service");
-		userDAO.addUser(user);
+		return userDAO.addUser(user);
 		
 	}
 	

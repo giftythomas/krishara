@@ -1,5 +1,31 @@
 <%@include file="userHeader.jsp" %>
 <title>PRODUCT'S</title>
+<div class="container" ng-app="myApp" ng-controller="productCtrl">
+<form>
+    <div class="form-group">
+      <div class="text-center input-group col-md-4">
+        <div class="input-group-addon "><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Search Product" ng-model="search">      
+       </div>      
+    </div>
+  </form> 
+<div class="w3-container w3-teal">
+<h1>Winter 2016</h1>
+</div>
+<div class="w3-row-padding w3-margin-top" >
+<div class="w3-third" ng-repeat="roll in names | orderBy:sortType:sortReverse | filter:search">
+<div class="w3-card-2" >
+<img src="resources/images/{{roll.product_id}}.jpg"  style="width:100 px; height:100 px" alt="image from db">
+<div class="w3-container text-center">
+<h4>{{roll.product_name}}</h4>
+<p>Rs.{{roll.product_price}}/-</p>
+<a href="productDetails?id={{roll.product_id}}" class="btn btn-warning" >Product Details</a>
+</div>
+
+</div>
+</div>
+</div>
+</div>
 <script>
 angular.module('myApp',[]).controller('productCtrl',function($scope)
 		{
@@ -11,74 +37,4 @@ angular.module('myApp',[]).controller('productCtrl',function($scope)
 			}
 		});
 </script>
-<h3 class="text-info">Welcome ${loggedInUser},</h3>
-<div class="container" ng-app="myApp" ng-controller="productCtrl" >
-  
-  <form>
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-        <input type="text" class="form-control" placeholder="Search Product" ng-model="search">      
-       </div>      
-    </div>
-  </form>
-  
-  <table class="table table-bordered table-striped">
-    
-    <thead>
-      <tr>
-      
-        <td>
-          <a href="#" ng-click="sortType = 'category'; sortReverse = !sortReverse" style="color: blue">
-            Category
-            <span ng-show="sortType == 'category' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'category' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-        </td>
-        <td>
-          <a href="#" ng-click="sortType = 'product_name'; sortReverse = !sortReverse" style="color: blue">
-            ProductName
-            <span ng-show="sortType == 'product_name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'product_name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-        </td>
-        
-        <td>
-          <a href="#" ng-click="sortType = 'product_price'; sortReverse = !sortReverse" style="color: blue">
-          Price
-            <span ng-show="sortType == 'product_price' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'product_price' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-        </td>
-       <td>
-      <a href="#" ng-click="sortType = ''; sortReverse = !sortReverse" style="color: blue">
-      Image
-      <span ng-show="sortType == '' && !sortReverse" class="fa fa-caret-down"></span>
-      <span ng-show="sortType == '' && sortReverse" class="fa fa-caret-up"></span>
-      </a>
-      </td>
-      <td>
-      <a href="#" ng-click="sortType = ''; sortReverse = !sortReverse" style="color: blue">
-      Link
-      <span ng-show="sortType == '' && !sortReverse" class="fa fa-caret-down"></span>
-      <span ng-show="sortType == '' && sortReverse" class="fa fa-caret-up"></span>
-      </a>
-      </td>
-      </tr>
-    </thead>
-    
-    <tbody>
-      <tr ng-repeat="roll in names | orderBy:sortType:sortReverse | filter:search">
-           		<td class="warning">{{roll.category}}</td>
-           		<td class="danger">{{roll.product_name}}</td>
-           		<td class="warning">{{roll.product_price}}</td>
-           		<td class="primary"><img src="resources/images/{{roll.product_id}}.jpg" style="width: 100px ;height:100px"></td>
-           		<td><a href="productDetails?id={{roll.product_id}}">Product Details</a> 
-                </td>
-      </tr>
-    </tbody>
-    
-  </table>
-  
-</div><br><br/><br/><br/>
 <%@include file="footer.jsp" %>

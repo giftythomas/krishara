@@ -12,4 +12,4 @@
 			</ul>
 		</div>
 		</div>
-<%@include file="userHeader.jsp"%>
+<%@include file="footer.jsp"%>

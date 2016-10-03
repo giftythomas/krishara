@@ -65,7 +65,7 @@ public class AdminController {
 		System.out.println("add product called");
 		productService.addProduct(p);
 		MultipartFile productImage = p.getFile();
-		Path path = Paths.get("C://Users//Ramakrishna//KrishAra//FreeStyle//src//main//webapp//WEB-INF//resources//images//"
+		Path path = Paths.get("C://Users//Ramakrishna//git//krishara//FreeStyle//src//main//webapp//WEB-INF//resources//images//"
 				+ p.getProduct_id() + ".jpg");
 		if (productImage != null && !productImage.isEmpty()) {
 			productImage.transferTo(new File(path.toString()));

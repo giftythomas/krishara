@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class CartItems implements Serializable{
 
 	private static final long serialVersionUID = -7081909909171296469L;
-	@Id@GeneratedValue
+	@Id@GeneratedValue(strategy=GenerationType.AUTO)
 	private int cartItem_id;
 	@ManyToOne
 	@JoinColumn(name="cart_id")

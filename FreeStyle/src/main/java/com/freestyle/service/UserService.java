@@ -6,7 +6,7 @@ import com.freestyle.model.User;
 
 public interface UserService {
 
-   public void addUser(User user);
+   public String addUser(User user);
    
    public List<User> viewUser();
    

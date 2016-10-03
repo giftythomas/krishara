@@ -7,20 +7,25 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.binding.message.MessageBuilder;
+import org.springframework.binding.message.MessageContext;
+import org.springframework.stereotype.Component;
 
 import com.freestyle.model.Cart;
-import com.freestyle.model.User;
 import com.freestyle.model.RoleAuthority;
+import com.freestyle.model.User;
 
-@Repository
+@Component
 public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
+	
+	public User initFlow(){
+		return new User();
+	}
 
-	public void addUser(User user) {
-		System.out.println("UserDAOImpl");
+	public String addUser(User user) {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		user.setEnabled(true);
@@ -35,7 +40,7 @@ public class UserDAOImpl implements UserDAO {
 		session.save(user);
 		session.save(cart);
 		transaction.commit();
-
+		return "added";
 	}
 
 	@SuppressWarnings("unused")
@@ -66,4 +71,28 @@ public class UserDAOImpl implements UserDAO {
 		transaction.commit();
 	}
 
+	public String validateUser(User user,MessageContext messageContext) {
+		String status="success";
+		if(user.getUser_name().isEmpty()){
+			messageContext.addMessage(new MessageBuilder()
+					.error().source("user_name").defaultText("Name cannot be empty").build());
+				status="failure";
+			}
+		if(user.getPassword().isEmpty()){
+			messageContext.addMessage(new MessageBuilder()
+					.error().source("password").defaultText("Password cannot be empty").build());
+			status="failure";
+		}
+		if(user.getEmailid().isEmpty()){
+			messageContext.addMessage(new MessageBuilder()
+					.error().source("emailid").defaultText("EmailId cannot be empty").build());
+			status="failure";
+		}
+		if(user.getUser_address().isEmpty()){
+			messageContext.addMessage(new MessageBuilder()
+					.error().source("user_address").defaultText("Address cannot be empty").build());
+			status="failure";
+		}
+		return status;
+	}
 }

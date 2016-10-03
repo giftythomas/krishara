@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="item">
-                      <img src=<c:url value="resources/images/shoe.jpg" /> alt="img">
+                      <img src=<c:url value="resources/images/shoe2.jpg" /> alt="img">
                         <div class="carousel-caption car-re-posn">
                             <h3>AirMax</h3>
                             <h4>You feel to fall</h4>

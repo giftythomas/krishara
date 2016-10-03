@@ -18,11 +18,11 @@
 
 </script>
 <meta charset utf="8">
-<link
+<!-- <link
 	href='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'
 	rel='stylesheet' type='text/css'>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js'>
+<script src='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js'> </script> -->
 	<link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script
@@ -58,18 +58,10 @@
 					<a href="index">N-AIR</a>
 				</div>
 				<div class="login-bars">
-					<c:choose>
-						<c:when test="${empty loggedInUser}">
 							<a class="btn btn-default log-bar" href="register" role="button">Sign
 								up</a>
 							<a class="btn btn-default log-bar" href="User" role="button">Login</a>
-						</c:when>
-						<c:when test="${not empty loggedInUser}">
-							<a class="btn btn-default log-bar" href="logout" role="button">Logout</a>
-						</c:when>
-					</c:choose>
-
-				</div>
+						</div>
 				<div class="clearfix"></div>
 			</div>
 			<!---menu-----bar--->

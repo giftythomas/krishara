@@ -1,8 +1,11 @@
 package com.freestyle.model;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -11,28 +14,19 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Table(uniqueConstraints=@UniqueConstraint(columnNames={"user_name"}))
 @Component
-public class User {
-
+public class User implements Serializable{
+	private static final long serialVersionUID = 6611844006934080483L;
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int user_id;
-	@NotEmpty(message = "Username should not be empty")
-	
 	private String user_name;
-	@NotEmpty(message = "Password should not be empty")
-	@Size(min=8, max=20,message="Password must be between (min) and (max) characters")
 	private String password;
-	@NotEmpty(message = "Emailid should not be empty")
-	@Email(message="Given emailId is not valid format")
 	private String emailid;
-	@NotEmpty(message = "Address should not be empty")
 	private String user_address;
 	
 	@OneToOne(cascade=CascadeType.ALL)

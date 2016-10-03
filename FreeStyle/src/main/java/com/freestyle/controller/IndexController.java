@@ -5,7 +5,6 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -13,10 +12,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,17 +32,12 @@ public class IndexController {
 	@Autowired
 	SessionFactory sessionFactory;
 	//request mapping for the first page
-	@RequestMapping("/")
-	public ModelAndView indexLoad(){
-		System.out.println("Starting of method indexLoad()");
-		return new ModelAndView("index");
-	}
-	@RequestMapping("/index")
-	public ModelAndView index(){
-		return new ModelAndView("index");
+	@RequestMapping(value={"/","/index"})
+	public String indexLoad(){
+		return "index";
 	}
 	//when user clicks on register, this method will be executed
-	@RequestMapping("/register")
+	@RequestMapping("/signup")
 	public ModelAndView register(){
 		System.out.println("register method");
 		ModelAndView mv= new ModelAndView("register");
@@ -54,7 +45,7 @@ public class IndexController {
 		return mv;
 	}
 	//when the user clicks on submit, the fields which are given are pushed into db
-	@RequestMapping(value="/reg", method=RequestMethod.POST)
+	/*@RequestMapping(value="/reg", method=RequestMethod.POST)
 	public ModelAndView reg(@Valid@ModelAttribute User user, BindingResult bindingResult){
 		if(bindingResult.hasErrors()){
 			return new ModelAndView("register");
@@ -62,14 +53,14 @@ public class IndexController {
 		service.addUser(user);
 		System.out.println("Done saving");
 		return new ModelAndView("login","success","\"Successfully registered!!\"");
-	}
+	}*/
 	@RequestMapping("/User")
 	public ModelAndView userCheck(Principal principal) throws JsonGenerationException, JsonMappingException, IOException{
 		System.out.println("user login");
 		List<Product> list = productService.viewProduct();
 		ObjectMapper object = new ObjectMapper();
 		String jsonlist = object.writeValueAsString(list);
-		return new ModelAndView("test1","listofproducts",jsonlist);
+		return new ModelAndView("userHome","listofproducts",jsonlist);
 	}
 	@RequestMapping("/productDetails")
 	public ModelAndView productDetails(@RequestParam("id") String id){
@@ -77,9 +68,15 @@ public class IndexController {
 		return new ModelAndView("test","products",product);
 	}
 	@RequestMapping("/Admin")
-	public ModelAndView adminCheck(Principal principal){
-		
+	public ModelAndView allRoles(Principal principal){
+		/*int id=service.getIdFromUser(principal.getName());
+		String auth=service.getAuthority(id);
+		if(auth.equals("ROLE_ADMIN")){*/
 		return new ModelAndView("adminHome");
+		/*}
+		else{
+			return new ModelAndView("userHome");
+		}*/
 	}
 	//Mapping login
 	@RequestMapping("/login")

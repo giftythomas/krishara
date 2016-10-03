@@ -148,6 +148,12 @@
 			<artifactId>spring-webflow</artifactId>
 			<version>2.4.4.RELEASE</version>
 		</dependency>
+		<!-- ORACLE database driver -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0</version>
+		</dependency>
 
 	</dependencies>
 	<build>

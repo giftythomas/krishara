@@ -22,6 +22,7 @@ public class CartItemsDAOImpl implements CartItemsDAO {
 		Transaction tx=session.beginTransaction();
 		session.saveOrUpdate(cartItem);
 		tx.commit();
+		//sessionFactory.getCurrentSession().saveOrUpdate(cartItem);
 		System.out.println("Item added to cart");
 	}
 
@@ -32,13 +33,6 @@ public class CartItemsDAOImpl implements CartItemsDAO {
 		session.delete(cartItem);
 		tx.commit();
 	}
-
-
-	/*public void removeAllItems(Cart cart) {
-		
-		
-	}*/
-
 	
 	public CartItems getCartItemByProductId(int product_id) {
 		Session session=sessionFactory.getCurrentSession();
