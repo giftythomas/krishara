@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+</head>
+<body>
+	<script src="pages/HomeController.js" id="pages/home.html">
+		
+	</script>
+	<script src="pages/BlogController.js" id="pages/blog.html">
+		
+	</script>
+	<script src="pages/AboutController.js" id="pages/about.html">
+		
+	</script>
+
+	<a href="#/">Home</a>
+	<a href="#/blog">Blog</a>
+	<a href="#/about">About</a>
+
+	<div ng-view></div>
+
+	<script src="appRouting.js"></script>
+</body>
+</html>
