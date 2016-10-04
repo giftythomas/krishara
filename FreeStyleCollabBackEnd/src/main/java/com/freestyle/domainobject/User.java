@@ -11,16 +11,23 @@ import org.springframework.stereotype.Component;
 public class User extends BaseDomain {
 
 	@Id
-	private int user_id;
+	private String user_id;
 	private String user_name;
 	private String password;
 	private String email;
 	private String user_address;
 	private char enabled;
-	public int getUser_id() {
+	private String role;
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 	public String getUser_name() {

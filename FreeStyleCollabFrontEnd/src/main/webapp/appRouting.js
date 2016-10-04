@@ -30,7 +30,7 @@ app.config(function($routeProvider) {
 	  })
 
 	  .when('/about', {
-	    templateUrl : 'c_about/about.html',
+	    templateUrl : 'fs_about/about.html',
 	    controller  : 'AboutController'
 	  })
 	  

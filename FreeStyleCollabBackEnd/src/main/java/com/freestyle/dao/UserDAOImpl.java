@@ -32,6 +32,7 @@ public class UserDAOImpl implements UserDAO {
 		log.debug("Entering saveOrUpdate method");
 		try {
 			sessionFactory.getCurrentSession().save(user);
+			user.setEnabled('Y');
 			return true;
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -56,7 +57,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public void delete(int id) {
+	public void delete(String id) {
 		log.debug("Entering delete method");
 		try {
 			User user=new User();
@@ -72,7 +73,7 @@ public class UserDAOImpl implements UserDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public User getById(int id) {
+	public User getById(String id) {
 		log.debug("Entering getById method");
 		try {
 			List<User> list=sessionFactory.getCurrentSession().createCriteria(User.class)
@@ -99,7 +100,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public User authenticate(String name, String password) {
+	public void authenticate(String name, String password) {
 		String hql="from User where user_name="+name+"and password="+password;
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
 		User user=(User) query.uniqueResult();

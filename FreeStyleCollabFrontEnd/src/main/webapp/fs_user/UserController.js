@@ -2,7 +2,7 @@
 
 angular.module('myApp').controller('UserController', ['$scope', 'UserService', function($scope, UserService) {
     var self = this;
-    self.user={user_id:'',user_name:'',password:'',user_address:'',email:''};
+    self.user={user_id:'',user_name:'',password:'',user_address:'',email:'',role:''};
     self.users=[];
 
     self.submit = submit;
@@ -61,14 +61,9 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
     }
 
     function submit() {
-        if(self.user.id===null){
             console.log('Saving New User', self.user);
             createUser(self.user);
-        }else{
-            updateUser(self.user, self.user.id);
-            console.log('User updated with id ', self.user.id);
-        }
-        reset();
+            reset();
     }
 
     function edit(id){
@@ -92,7 +87,7 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
 
     function reset(){
     	console.log("reset form")
-        self.user={user_id:'',user_name:'',password:'',user_address:'',email:''};
+        self.user={user_id:'',user_name:'',password:'',user_address:'',email:'',role:''};
         $scope.myForm.$setPristine(); //reset Form
     }
 }]);

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.freestyle.dao.UserDAO;
@@ -38,7 +37,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> getUser(@PathVariable("id") int id) {
+	public ResponseEntity<User> getUser(@PathVariable("id") String id) {
 		log.debug("<---Entering getUser method--->");
 		User user = userDAO.getById(id);
 		if (user == null) {
@@ -62,7 +61,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
+	public ResponseEntity<User> updateUser(@PathVariable("id") String id, @RequestBody User user) {
 		log.debug("<---Entering updateUser method--->");
 		if(userDAO.getById(id)==null){
 			log.debug("<-- User about to update -->");
@@ -74,7 +73,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<User> deleteUser(@PathVariable("id") int id) {
+	public ResponseEntity<User> deleteUser(@PathVariable("id") String id) {
 		log.debug("<---Entering deleteUser method--->");
 		User user = userDAO.getById(id);
 		if (user == null) {
