@@ -2,6 +2,8 @@ package com.freestyle.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +21,12 @@ import com.freestyle.domainobject.User;
 
 @RestController
 public class UserController {
-
+	
+UserDAO userdao;
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private UserDAO userDAO;
-	@Autowired
-	private User user;
-
+	
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public ResponseEntity<List<User>> listAllUsers() {
 		log.debug("<---Entering listAllUsers method--->");
@@ -33,6 +34,7 @@ public class UserController {
 		if (users.isEmpty()) {
 			return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
 		}
+		log.debug("<-- Got all the Users -->");
 		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
 
@@ -47,7 +49,16 @@ public class UserController {
 		log.debug("<-- Got the user with Id+ -->"+user.getUser_id());
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-
+	/*${message}
+	@RequestMapping(value="/register",method=RequestMethod.POST )
+public ModelAndView reg(@ModelAttribute("user") User user){
+	ModelAndView model=new ModelAndView();
+	userdao.saveUser(user);
+	model.addObject("message","You've successfully registered!");
+	model.setViewName("login");
+	return model;
+	
+}*/
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public ResponseEntity<User> saveUser(@RequestBody User user) {
 		log.debug("<---Entering saveUser method--->");
@@ -84,10 +95,18 @@ public class UserController {
 		log.debug("<---User deleted successfully--->");
 		return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
 	}
-	
-	public ResponseEntity<User> authenticate(@RequestBody User user){
-		return null;
-		
-		
+	@RequestMapping(value="/user/authenticate/",method=RequestMethod.POST)
+	public ResponseEntity<User> authenticate(@RequestBody User user, HttpSession session){
+		log.debug("<---Entering authenticate controller method--->");
+		user=userDAO.authenticate(user.getUser_name(), user.getPassword());
+		if(user==null){
+			user=new User();
+			user.setErrorMessage("Invalid Credentials! Enter valid id and Password");
+		}
+		else{
+			log.debug("User exists with given credentials");
+			session.setAttribute("loggedInUser", user);
+		}
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 }

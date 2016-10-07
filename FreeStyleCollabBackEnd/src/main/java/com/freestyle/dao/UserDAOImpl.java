@@ -24,7 +24,14 @@ public class UserDAOImpl implements UserDAO {
 	@Autowired
 	User user;
 	public UserDAOImpl(SessionFactory sessionFactory){
-		this.sessionFactory = sessionFactory;
+		log.debug("<-- Entering sessionFactory -->");
+		try {
+			this.sessionFactory = sessionFactory;
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+		   }
+		log.debug("<-- Exiting sessionFactory -->");
 		}
 	
 	@Transactional
@@ -99,15 +106,25 @@ public class UserDAOImpl implements UserDAO {
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Transactional
-	public void authenticate(String name, String password) {
-		String hql="from User where user_name="+name+"and password="+password;
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		User user=(User) query.uniqueResult();
-		return user;
-		
+	public User authenticate(String name, String password) {
+		log.debug("Entering authenticate method");
+		try {
+			String hql = "from User where user_name= '" + name + "' and " + " password ='" + password+"'";
+			Query query=sessionFactory.getCurrentSession().createQuery(hql);
+			List<User> list=(List<User>)query.list();
+			if(list!=null && !list.isEmpty()){
+				return list.get(0);
+			}
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+		}
+		log.debug("Exiting authenticate method");
+		return null;
 	}
-	
+
 	/*@SuppressWarnings("unchecked")
 	@Transactional
 	public User getByName(String name) {

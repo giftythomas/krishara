@@ -14,8 +14,11 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.freestyle.dao.BlogDAO;
+import com.freestyle.dao.BlogDAOImpl;
 import com.freestyle.dao.UserDAO;
 import com.freestyle.dao.UserDAOImpl;
+import com.freestyle.domainobject.Blog;
 import com.freestyle.domainobject.User;
 
 @Configuration
@@ -48,6 +51,7 @@ public class ApplicationContextConfig {
 		LocalSessionFactoryBuilder session= new LocalSessionFactoryBuilder(dataSource);
 		session.addProperties(getHibernateProperties());
 		session.addAnnotatedClass(User.class);
+		session.addAnnotatedClass(Blog.class);
 		return session.buildSessionFactory();
 	}
 	
@@ -62,6 +66,12 @@ public class ApplicationContextConfig {
 	@Bean(name="userDAO")
 	public UserDAO userDAOImpl(SessionFactory sessionFactory){
 		return new UserDAOImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name="blogDAO")
+	public BlogDAO blogDAOImpl(SessionFactory sessionFactory){
+		return new BlogDAOImpl(sessionFactory);
 	}
 	
 }

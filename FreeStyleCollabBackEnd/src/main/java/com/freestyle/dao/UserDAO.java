@@ -16,6 +16,6 @@ public interface UserDAO {
 	
 	public List<User> listUser();
 	
-	public void authenticate(User user);
+	public User authenticate(String name, String password);
 	
 }
