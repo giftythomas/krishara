@@ -39,10 +39,6 @@ public class BlogDAOImpl implements BlogDAO{
 	public boolean save(Blog blog) {
 		log.debug("<-- Enetring save method -->");
 		try {
-			blog.setStatus("N");
-			Date date_time=new Date();
-			blog.setDate_time(date_time);
-			blog.setUser_id(user.getUser_id());
 			sessionFactory.getCurrentSession().save(blog);
 			return true;
 		} catch (HibernateException e) {
