@@ -24,7 +24,14 @@ public class UserDAOImpl implements UserDAO {
 	@Autowired
 	User user;
 	public UserDAOImpl(SessionFactory sessionFactory){
-		this.sessionFactory = sessionFactory;
+		log.debug("<-- Entering sessionFactory -->");
+		try {
+			this.sessionFactory = sessionFactory;
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+		   }
+		log.debug("<-- Exiting sessionFactory -->");
 		}
 	
 	@Transactional
@@ -32,6 +39,7 @@ public class UserDAOImpl implements UserDAO {
 		log.debug("Entering saveOrUpdate method");
 		try {
 			sessionFactory.getCurrentSession().save(user);
+			user.setEnabled('Y');
 			return true;
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -56,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public void delete(int id) {
+	public void delete(String id) {
 		log.debug("Entering delete method");
 		try {
 			User user=new User();
@@ -72,7 +80,7 @@ public class UserDAOImpl implements UserDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public User getById(int id) {
+	public User getById(String id) {
 		log.debug("Entering getById method");
 		try {
 			List<User> list=sessionFactory.getCurrentSession().createCriteria(User.class)
@@ -98,15 +106,25 @@ public class UserDAOImpl implements UserDAO {
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public User authenticate(String name, String password) {
-		String hql="from User where user_name="+name+"and password="+password;
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		User user=(User) query.uniqueResult();
-		return user;
-		
+		log.debug("Entering authenticate method");
+		try {
+			String hql = "from User where user_name= '" + name + "' and " + " password ='" + password+"'";
+			Query query=sessionFactory.getCurrentSession().createQuery(hql);
+			List<User> list=(List<User>)query.list();
+			if(list!=null && !list.isEmpty()){
+				return list.get(0);
+			}
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+		}
+		log.debug("Exiting authenticate method");
+		return null;
 	}
-	
+
 	/*@SuppressWarnings("unchecked")
 	@Transactional
 	public User getByName(String name) {

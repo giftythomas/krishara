@@ -1,0 +1,62 @@
+<header id="head" class="secondary"></header>
+
+<!-- container -->
+<div class="container" ng-controller="UserController as ctrl">
+
+	<ol class="breadcrumb">
+		<li><a href="index.html">Home</a></li>
+		<li class="active">User access</li>
+	</ol>
+
+	<div class="row">
+
+		<!-- Article main content -->
+		<article class="col-xs-12 maincontent">
+			<header class="page-header">
+				<h1 class="page-title">Sign in</h1>
+			</header>
+
+			<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h3 class="thin text-center">Sign in to your account</h3>
+						<p class="text-center text-muted">
+							Don't have an account! No worries.. You can <a href="#/register">register</a>
+							 to become a part of us.
+						</p>
+						<div ng-show='ctrl.user.errorMessage'>
+							<div class="alert lert-danger fade in">Bad Credentials:
+							{{ctrl.user.errorMessage}}
+							</div>
+						</div>
+						<hr>
+						<form name="myForm" role="form" ng-submit="ctrl.login()">
+							<div class="top-margin" ng-class="{'has-error' : myForm.username.$error.required && myForm.username.$dirty}">
+								<label for="username">Username<span class="text-danger">*</span></label>
+								<input type="text" id="username" name="username" ng-model="ctrl.user.user_name" class="form-control" required>
+                                <span ng-show="myForm.username.$error.required && myForm.username.$dirty" class="help-block">This is a required field</span>
+							</div>
+							<div class="top-margin" ng-class="{'has-error' : myForm.password.$error.required && myForm.password.$dirty}">
+								<label for="password">Password <span class="text-danger">*</span></label> <input
+									type="password" id="password" name="password" ng-model="ctrl.user.password" required class="form-control">
+								<span ng-show="myForm.password.$error.required && myForm.password.$dirty" class="help-block">This is a required field</span>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-lg-8">
+									<b><a href="">Forgot password?</a></b>
+								</div>
+								<div class="col-lg-4 text-right">
+									<button class="btn btn-action" ng-disabled="myForm.$invalid || ctrl.dataLoading" type="submit">Sign in</button>
+									<img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</article>
+		<!-- /Article -->
+	</div>
+</div>
+<!-- /container -->
