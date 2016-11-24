@@ -1,6 +1,9 @@
 package com.freestyle.controller;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,9 +49,13 @@ public class BlogController {
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 	}
 	@PostMapping("/blog")
-	public ResponseEntity<Blog> saveBlog(@RequestBody Blog blog) {
+	public ResponseEntity<Blog> saveBlog(@RequestBody Blog blog,HttpSession session) {
 		log.debug("<---Entering saveBlog method--->");
 		if (blogDAO.getBlog(blog.getId()) == null) {
+			User loggedInUser=(User) session.getAttribute("loggedInUser");
+			blog.setDate_time(new Date());
+			blog.setStatus("N");
+			blog.setUser_id(loggedInUser.getUser_id());
 			blogDAO.save(blog);
 			log.debug("<-- Blog is about to create --->");
 			return new ResponseEntity<Blog>(blog, HttpStatus.CREATED);

@@ -1,6 +1,6 @@
 'use strict';
 
-app.module('myApp').controller('HomeController',function(UserService, $rootScope){
+angular.module('myApp').controller('HomeController',function(UserService, $rootScope){
 	var self=this;
 	
 	self.user=null;
@@ -9,11 +9,13 @@ app.module('myApp').controller('HomeController',function(UserService, $rootScope
 	initController();
 
     function initController() {
-        loadCurrentUser();
-        loadAllUsers();
+        loadActiveUser();
     }
     
-    function loadCurrentUser(){
+    function loadActiveUser(){
     	UserService.getUserById($rootScope.activeUser.user_id)
+    		.then(function(user){
+    			self.user=user;
+    		});
     }
 });

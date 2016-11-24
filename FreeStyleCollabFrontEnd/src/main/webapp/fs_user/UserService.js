@@ -7,7 +7,7 @@ app.factory('UserService', ['$http', '$q', '$rootScope' , '$location', function(
     var BACK_END_URL = 'http://localhost:8083/FreeStyleCollabBackEnd/';
 	return{
 		
-		getUserById:function() {
+		getUserById:function(id) {
 			return $http.get(BACK_END_URL+'/user'+id)
 				.then(function(response){
 					return response.data;

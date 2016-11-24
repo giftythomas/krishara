@@ -2,8 +2,8 @@
 	<header id="head">
 		<div class="container" ng-controller="HomeController as ctrl">
 			<div class="row">
-				<h1 class="lead">Welcome: {{activeUser.user_name}}</h1>
-				<p class="tagline">Your role: {{activeUser.role}}</p>
+				<h1 class="lead">Welcome: {{ctrl.user.user_name}}</h1>
+				<p class="tagline">Your role: {{ctrl.user.role}}</p>
 			</div>
 		</div>
 	</header>
