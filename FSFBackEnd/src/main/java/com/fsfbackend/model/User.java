@@ -1,5 +1,6 @@
 package com.fsfbackend.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,15 +12,21 @@ import org.springframework.stereotype.Component;
 @Component("user")
 public class User {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id@GeneratedValue(strategy=GenerationType.AUTO)
 	private int userId;
 	private String username;
 	private String password;
 	private String email;
 	private String address;
 	private boolean enabled;
-	private String role;
+	@Column(columnDefinition="tinyinit default 0")
+	private byte admin;
+	public byte getAdmin() {
+		return admin;
+	}
+	public void setAdmin(byte admin) {
+		this.admin = admin;
+	}
 	public int getUserId() {
 		return userId;
 	}
@@ -56,10 +63,5 @@ public class User {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
 }

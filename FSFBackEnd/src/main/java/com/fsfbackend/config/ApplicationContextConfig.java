@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.fsfbackend.dao.UserDAO;
 import com.fsfbackend.dao.UserDAOImpl;
 import com.fsfbackend.model.Category;
+import com.fsfbackend.model.Product;
+import com.fsfbackend.model.Supplier;
 import com.fsfbackend.model.User;
 
 
@@ -52,6 +54,8 @@ public class ApplicationContextConfig {
 		session.addProperties(getHibernateProperties());
 		session.addAnnotatedClass(User.class);
 		session.addAnnotatedClass(Category.class);
+		session.addAnnotatedClass(Product.class);
+		session.addAnnotatedClass(Supplier.class);
 		return session.buildSessionFactory();
 	}
 	

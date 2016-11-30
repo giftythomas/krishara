@@ -28,13 +28,12 @@ public class UserTest {
 		userDAO= (UserDAO) config.getBean("userDAO");
 		
 	}
-	//@Test
+	@Test
 	public void saveOrUpdate(){
 		user.setAddress("Hyderabad");
 		user.setEmail("xyz@xyz.com");
 		user.setEnabled(true);
 		user.setPassword("password");
-		user.setRole("user");
 		user.setUsername("xyz");
 		user.setUserId(3);
 		userDAO.saveOrUpdate(user);
@@ -43,7 +42,7 @@ public class UserTest {
 	public void delete(){
 		userDAO.delete(1);
 	}
-	@Test
+	//@Test
 	public void list(){
 		int size=userDAO.list().size();
 		assertEquals("user list is", 2, size);
