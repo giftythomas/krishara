@@ -49,16 +49,7 @@ UserDAO userdao;
 		log.debug("<-- Got the user with Id+ -->"+user.getUser_id());
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-	/*${message}
-	@RequestMapping(value="/register",method=RequestMethod.POST )
-public ModelAndView reg(@ModelAttribute("user") User user){
-	ModelAndView model=new ModelAndView();
-	userdao.saveUser(user);
-	model.addObject("message","You've successfully registered!");
-	model.setViewName("login");
-	return model;
 	
-}*/
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public ResponseEntity<User> saveUser(@RequestBody User user) {
 		log.debug("<---Entering saveUser method--->");
