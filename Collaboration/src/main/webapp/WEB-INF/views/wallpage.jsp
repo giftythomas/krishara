@@ -4,8 +4,6 @@
 <title></title>
 <%@taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-
 <table border="0">
 
 <tr>
