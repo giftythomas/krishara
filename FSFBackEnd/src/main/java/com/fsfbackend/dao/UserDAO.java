@@ -14,5 +14,7 @@ public interface UserDAO {
 	
 	public User get(int id);
 	
+	public User getByName(String name);
+	
 	public boolean validUser(String username, String password);
 }

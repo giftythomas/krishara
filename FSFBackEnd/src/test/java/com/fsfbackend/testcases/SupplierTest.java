@@ -1,7 +1,5 @@
 package com.fsfbackend.testcases;
 
-import static org.junit.Assert.fail;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +27,8 @@ public class SupplierTest {
 	}
 	@Test
 	public void test() {
-		supplier.setSupAddress("Hyderabad");
-		supplier.setSupName("Joke");
+		supplier.setSupAddress("Bangalore");
+		supplier.setSupName("Hilarious");
 		supplierDAO.saveOrUpdate(supplier);
 	}
 

@@ -30,15 +30,14 @@ public class UserTest {
 	}
 	@Test
 	public void saveOrUpdate(){
-		user.setAddress("Hyderabad");
-		user.setEmail("xyz@xyz.com");
+		user.setAddress("Chennai");
+		user.setEmail("xyz@abc.com");
 		user.setEnabled(true);
 		user.setPassword("password");
-		user.setUsername("xyz");
-		user.setUserId(3);
+		user.setUsername("username");
 		userDAO.saveOrUpdate(user);
 	}
-	@Test
+	//@Test
 	public void delete(){
 		userDAO.delete(1);
 	}

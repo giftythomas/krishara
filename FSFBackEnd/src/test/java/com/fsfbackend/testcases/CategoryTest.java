@@ -28,18 +28,18 @@ public class CategoryTest {
 
 	@Test
 	public void saveOrUpdate() {
-		category.setCatDescription("Dope");
-		category.setCatName("Brand");
+		category.setCatDescription("Fabulous");
+		category.setCatName("Puma");
 		categoryDAO.saveOrUpdate(category);
 	}
 	
-	@Test
+	//@Test
 	public void get(){
 		int size=categoryDAO.list().size();
 		assertEquals("category list is", 2, size);
 	}
 
-	@Test
+	//@Test
 	public void delete(){
 		categoryDAO.delete(2);
 	}

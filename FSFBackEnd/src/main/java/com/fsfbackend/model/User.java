@@ -3,7 +3,6 @@ package com.fsfbackend.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.stereotype.Component;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component("user")
 public class User {
 
-	@Id@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id@GeneratedValue
 	private int userId;
 	private String username;
 	private String password;

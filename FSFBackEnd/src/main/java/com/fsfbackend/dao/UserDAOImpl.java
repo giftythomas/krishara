@@ -84,7 +84,7 @@ public class UserDAOImpl implements UserDAO {
 			e.printStackTrace();
 			log.error(e.getMessage());
 		}
-		log.debug("<-- list method end -->");
+		log.debug("<-- get method end -->");
 		return null;
 	}
 
@@ -105,6 +105,24 @@ public class UserDAOImpl implements UserDAO {
 		}
 		log.debug("<-- delete method end -->");
 		return false;
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public User getByName(String name) {
+		log.debug("<-- getByName method init -->");
+		try {
+			String hql="from User where id="+"'"+name+"'";
+			Query query=sessionFactory.getCurrentSession().createQuery(hql);
+			List<User> list=(List<User>)query.list();
+			if(list!=null && list.isEmpty()){
+				return list.get(0);
+			}
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+		}
+		log.debug("<-- getByName method end -->");
+		return null;
 	}
 
 }

@@ -27,9 +27,9 @@ public class ProductTest {
 	}
 	@Test
 	public void saveOrUpdate() {
-		product.setPrice(20000);
-		product.setProDesc("Joke");
-		product.setProName("Comedy");
+		product.setPrice(30000);
+		product.setProDesc("Very Lame");
+		product.setProName("Puma");
 		productDAO.saveOrUpdate(product);
 	}
 
