@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp').controller('UserController', ['$scope', '$rootScope','$location','UserService', function($scope,$location,$rootScope, UserService) {
+angular.module('myApp').controller('UserController', ['$scope', '$rootScope','$location','UserService', function($scope,$rootScope,$location, UserService) {
     var self = this;
     self.user={
     		user_id:'',
@@ -85,7 +85,7 @@ angular.module('myApp').controller('UserController', ['$scope', '$rootScope','$l
             .then(
             		function(d) {
                         self.user = d;
-            if($rootScope.activeUser){
+            if(user.errorMessage!=""){
             	$location.path('/');
             }
             		},

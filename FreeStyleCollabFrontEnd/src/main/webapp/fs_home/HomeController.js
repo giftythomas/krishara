@@ -13,7 +13,7 @@ angular.module('myApp').controller('HomeController',function(UserService, $rootS
     }
     
     function loadActiveUser(){
-    	UserService.getUserById($rootScope.activeUser.user_id)
+    	UserService.getUserByName($rootScope.globals.activeUser.user_name)
     		.then(function(user){
     			self.user=user;
     		});

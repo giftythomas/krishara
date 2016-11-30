@@ -4,7 +4,7 @@ app.factory('UserService', ['$http', '$q', '$rootScope' , '$location', function(
 
 	console.log("In UserService")
 	
-    var BACK_END_URL = 'http://localhost:8083/FreeStyleCollabBackEnd/';
+    var BACK_END_URL = 'http://localhost:8084/FreeStyleCollabBackEnd/';
 	return{
 		
 		getUserById:function(id) {
@@ -76,6 +76,7 @@ app.factory('UserService', ['$http', '$q', '$rootScope' , '$location', function(
     		.then(
             function (response) {
                 if(response.data.errorMessage!=''){
+                	$rootScope.loggedInUser=true;
                 	$rootScope.activeUser= {
                 			user_id : response.data.user_id,
                 			user_name : response.data.user_name,
