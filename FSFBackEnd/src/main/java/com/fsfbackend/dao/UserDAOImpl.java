@@ -60,6 +60,7 @@ public class UserDAOImpl implements UserDAO {
 		log.debug("<-- delete method init -->");
 		try {
 			User user= new User();
+			user.setUserId(id);
 			sessionFactory.getCurrentSession().delete(user);
 		} catch (HibernateException e) {
 			e.printStackTrace();
