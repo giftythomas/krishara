@@ -16,5 +16,5 @@ public interface UserDAO {
 	
 	public User getByName(String name);
 	
-	public boolean validUser(String username, String password);
+	public boolean authenticate(String username, String password);
 }

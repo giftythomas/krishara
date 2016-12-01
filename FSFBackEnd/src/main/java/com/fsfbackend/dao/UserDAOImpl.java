@@ -45,6 +45,7 @@ public class UserDAOImpl implements UserDAO {
 	public boolean saveOrUpdate(User user) {
 		log.debug("<-- SaveorUpdate method init -->");
 		try {
+			user.setEnabled(true);
 			sessionFactory.getCurrentSession().saveOrUpdate(user);
 			return true;
 		} catch (HibernateException e) {
@@ -60,7 +61,7 @@ public class UserDAOImpl implements UserDAO {
 		log.debug("<-- delete method init -->");
 		try {
 			User user= new User();
-			user.setUserId(id);
+			user.setId(id);;
 			sessionFactory.getCurrentSession().delete(user);
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -90,39 +91,31 @@ public class UserDAOImpl implements UserDAO {
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public boolean validUser(String username, String password) {
-		log.debug("<-- validUser method init -->");
+	public boolean authenticate(String name, String password) {
+		log.debug("Entering authenticate method");
 		try {
-			String hql = "from User where username= '" + username + "' and " + " password ='" + password+"'";
+			String hql = "from User where username= '" + name + "' and " + " password ='" + password+"'";
 			Query query=sessionFactory.getCurrentSession().createQuery(hql);
 			List<User> list=(List<User>)query.list();
-			if(list!=null && list.isEmpty()){
+			if(list!=null && !list.isEmpty()){
 				return true;
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			log.error(e.getMessage());
 		}
-		log.debug("<-- delete method end -->");
+		log.debug("Exiting authenticate method");
 		return false;
 	}
-	@SuppressWarnings("unchecked")
-	@Override
+
+	@Transactional
 	public User getByName(String name) {
 		log.debug("<-- getByName method init -->");
-		try {
-			String hql="from User where id="+"'"+name+"'";
+			String hql="from User where username='"+name+"'";
 			Query query=sessionFactory.getCurrentSession().createQuery(hql);
-			List<User> list=(List<User>)query.list();
-			if(list!=null && list.isEmpty()){
-				return list.get(0);
-			}
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			log.error(e.getMessage());
-		}
+			User user=(User) query.uniqueResult();
 		log.debug("<-- getByName method end -->");
-		return null;
+		return user;
 	}
 
 }
