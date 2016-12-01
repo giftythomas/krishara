@@ -21,17 +21,17 @@ public class HomeController {
 
     private static final Logger log = LoggerFactory.getLogger(HomeController.class);
 	
-	@Autowired
-	private User user;
+    @Autowired
+	User user;
 
 	@Autowired
-	private UserDAO userDAO;
+	UserDAO userDAO;
 	
 	@Autowired
-	private CategoryDAO categoryDAO;
+	CategoryDAO categoryDAO;
 
 	@Autowired
-	private Category category;
+	Category category;
 	
 	@RequestMapping("/")
 	public ModelAndView home(HttpSession session){
