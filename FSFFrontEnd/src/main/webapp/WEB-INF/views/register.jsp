@@ -6,6 +6,7 @@
 
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Register User</title>
 </head>
@@ -51,9 +52,9 @@
 
 			<tr>
 
-				<td><input type="submit"
+				<td><input type="submit" class="btn btn-info"
 					value="<spring:message text="Register"/>" /></td>
-				<td><input type="reset" value="<spring:message text="Reset"/>" />
+				<td><input class="btn btn-danger" type="reset" value="<spring:message text="Reset"/>" />
 				</td>
 			</tr>
 
